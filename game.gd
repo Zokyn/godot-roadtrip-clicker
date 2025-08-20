@@ -10,3 +10,7 @@ func _process(delta: float) -> void:
 		engine_label.text = "Starting" 
 	else:
 		engine_label.text = "Off"
+
+
+func _on_engine_starting_timeout() -> void:
+	pass # Replace with function body.

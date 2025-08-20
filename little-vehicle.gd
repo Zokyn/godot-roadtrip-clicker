@@ -9,8 +9,9 @@ var engine_running_stream: AudioStream = preload("res://audios/car-engine-on.wav
 
 @export var speed: float = 300
 
-var engine_fade_speed := 1
-var engine_default_volume_db :=20.00
+var volume_fade_factor := 1
+var volume_max := 20.00 #decibéis
+var volume_min := 5.00  #decibéis
 
 
 func _ready() -> void:
@@ -36,10 +37,22 @@ func _physics_process(delta: float) -> void:
 	linear_velocity.x = direction * speed;
 
 func _process(delta: float) -> void:
+	if (engine_starting):
+		engine_sound.volume_db -= volume_fade_factor * delta
+	elif (engine_on and not engine_starting):
+		if(engine_sound.volume_db <= volume_max and engine_sound.volume_db > volume_min):
+			engine_sound.volume_db += volume_fade_factor * delta
+		elif(engine_sound.volume_db >= volume_min):
+			engine_sound.volume_db -= volume_fade_factor * delta
+	else:
+		engine_sound.volume_db = 0;
+		
+		
+	
 	pass
 	#if engine_sound.playing and engine_sound.stream == engine_start_stream:
 		#engine_sound.volume_db -= engine_fade_speed * delta;
-		#if engine_sound.volume_db <= engine_default_volume_db/0.1: 
+		#if engine_sound.volume_db <= volume_max/0.1: 
 			#engine_sound.stop()
 			#turn_engine_running()
 			
@@ -47,8 +60,9 @@ func _process(delta: float) -> void:
 
 func turn_engine_on() -> void: 
 	engine_starting = true;
+	$TimerEngineStarting.start()
 	engine_sound.stream = engine_start_stream;
-	engine_sound.volume_db = engine_default_volume_db
+	engine_sound.volume_db = volume_max
 	engine_sound.play()
 	$AnimationPlayer.play("engine_on_animation");
 	#engine_on = true;
@@ -65,11 +79,19 @@ func turn_engine_off() -> void:
 func turn_engine_running() -> void:
 	engine_on = true;
 	engine_sound.stream = engine_running_stream
-	engine_sound.volume_db = engine_default_volume_db
+	engine_sound.volume_db = volume_max
 	engine_sound.autoplay = true;
 	engine_sound.play()
 
 func _on_engine_start_audio_finished() -> void:
+	engine_on = true;
+	engine_starting = false; 
+	
+	turn_engine_running()
+	pass # Replace with function body.
+
+
+func _on_engine_starting_timeout() -> void:
 	engine_on = true;
 	engine_starting = false; 
 	
