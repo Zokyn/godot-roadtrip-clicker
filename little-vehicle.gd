@@ -25,14 +25,18 @@ func _physics_process(delta: float) -> void:
 	
 	# Forward Movement
 	if Input.is_action_pressed("movement_forward"):
-		#direction += 1.0
-		if (not engine_starting):
+		if (not engine_starting and not engine_on):
 			turn_engine_on();
+		elif (not engine_starting and engine_on):
+			direction += 1.0
+			
 	elif Input.is_action_pressed("movement_backward"):
 		#direction += -1.0
 		#turn_engine_on(false); 
-		if (engine_on or engine_starting):
+		if (engine_starting):
 			turn_engine_off()
+		elif (engine_on and not engine_starting):
+			direction += -0.5
 		
 	linear_velocity.x = direction * speed;
 
@@ -46,17 +50,7 @@ func _process(delta: float) -> void:
 			engine_sound.volume_db -= volume_fade_factor * delta
 	else:
 		engine_sound.volume_db = 0;
-		
-		
-	
 	pass
-	#if engine_sound.playing and engine_sound.stream == engine_start_stream:
-		#engine_sound.volume_db -= engine_fade_speed * delta;
-		#if engine_sound.volume_db <= volume_max/0.1: 
-			#engine_sound.stop()
-			#turn_engine_running()
-			
-	#elif engine_sound.stream == engine_running_stream:
 
 func turn_engine_on() -> void: 
 	engine_starting = true;
