@@ -76,6 +76,7 @@ func turn_engine_running() -> void:
 	engine_sound.volume_db = volume_max
 	engine_sound.autoplay = true;
 	engine_sound.play()
+	$AnimationPlayer.play("running_forward")	
 
 func _on_engine_start_audio_finished() -> void:
 	engine_on = true;
