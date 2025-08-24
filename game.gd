@@ -1,12 +1,13 @@
 extends Node2D
 
-@onready var car_object = $Car
+@onready var Car = $Car
+@onready var Road = $Road
 @onready var engine_label: Label = $HUD/EngineStateLabel
 
 func _process(delta: float) -> void:
-	if car_object.engine_on and not car_object.engine_starting:
+	if Car.engine_is_running and not Car.engine_starting:
 		engine_label.text = "On"
-	elif not car_object.engine_on and car_object.engine_starting:
+	elif not Car.engine_is_running and Car.engine_starting:
 		engine_label.text = "Starting" 
 	else:
 		engine_label.text = "Off"

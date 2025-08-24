@@ -1,273 +1,47 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbk6sju1i0iiq"]
+[gd_scene load_steps=7 format=3 uid="uid://bbk6sju1i0iiq"]
 
-[ext_resource type="Script" uid="uid://mc7hlvaenme" path="res://little-vehicle.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://mj1y7wp0rmkl" path="res://game.gd" id="1_fc0e3"]
-[ext_resource type="Texture2D" uid="uid://ih38xjj4m4v" path="res://sprites/ferrari-idle-sheet.png" id="2_e2o6t"]
-[ext_resource type="AudioStream" uid="uid://bd6o1owo2eh4b" path="res://audios/car-ignition-1.mp3" id="3_feb5d"]
-[ext_resource type="Texture2D" uid="uid://b4vhdw0ece5yj" path="res://sprites/ferrari-gts-running-sheet.png" id="4_7jktm"]
-[ext_resource type="Texture2D" uid="uid://bf8tf3tllepob" path="res://sprites/ferrari.png" id="4_eow3j"]
+[ext_resource type="Texture2D" uid="uid://cei86wp4atl31" path="res://icon.svg" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://banmfclsv54rd" path="res://car.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://cequ603jtgw3m" path="res://sprites/ferrari-road-solid.png" id="6_ryrav"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(160, 64)
-
-[sub_resource type="Animation" id="Animation_fc0e3"]
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_e2o6t")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_e2o6t"]
-resource_name = "engine_off"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:vframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_eow3j")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_feb5d"]
-resource_name = "engine_on_animation"
-length = 1.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0617135, 0.133333, 0.183333, 0.233333, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3, 1.33333, 1.36667, 1.4, 1.43333, 1.46667, 1.5, 1.53333, 1.56667, 1.6, 1.63333, 1.65833, 1.68333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_e2o6t")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [19]
-}
-
-[sub_resource type="Animation" id="Animation_ryrav"]
-resource_name = "running_forward"
-length = 2.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_7jktm")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333, 0.333333, 0.4, 0.466667, 0.566667, 0.633333, 0.833333, 0.933333, 1.06667, 1.36667, 1.46667, 1.63333, 1.73333, 2.06667, 2.23333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7jktm"]
-_data = {
-&"RESET": SubResource("Animation_fc0e3"),
-&"engine_off": SubResource("Animation_e2o6t"),
-&"engine_on_animation": SubResource("Animation_feb5d"),
-&"running_forward": SubResource("Animation_ryrav")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
-size = Vector2(1280, 192)
+size = Vector2(1273.32, 144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
 size = Vector2(88, 288)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_fc0e3")
 
-[node name="Car" type="RigidBody2D" parent="."]
-position = Vector2(168, 672)
-script = ExtResource("1_e2o6t")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 192)
+scale = Vector2(11.175, 7.555)
+texture = ExtResource("2_fc0e3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Car"]
-scale = Vector2(2, 2)
-texture = ExtResource("2_e2o6t")
-vframes = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
-shape = SubResource("RectangleShape2D_e2o6t")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Car"]
-libraries = {
-&"": SubResource("AnimationLibrary_7jktm")
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="Car"]
-stream = ExtResource("3_feb5d")
-
-[node name="TimerEngineStarting" type="Timer" parent="Car"]
-wait_time = 2.5
-one_shot = true
-
-[node name="Road" type="StaticBody2D" parent="."]
-position = Vector2(576, 592)
+[node name="Road" type="Area2D" parent="."]
+position = Vector2(608, 512)
 
 [node name="Sprite2D" type="Sprite2D" parent="Road"]
-visible = false
-position = Vector2(64, 80)
 texture = ExtResource("6_ryrav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Road"]
-position = Vector2(64, 80)
+modulate = Color(0.211765, 0.211765, 0.211765, 0.894118)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_7jktm")
 
+[node name="Car" parent="." node_paths=PackedStringArray("Road") instance=ExtResource("3_feb5d")]
+position = Vector2(168, 496)
+Road = NodePath("../Road")
+
 [node name="Backwards Limit" type="StaticBody2D" parent="."]
-position = Vector2(576, 584)
+position = Vector2(-16, 472)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Backwards Limit"]
-position = Vector2(-528, 64)
 shape = SubResource("RectangleShape2D_feb5d")
 
 [node name="Forwards Limit" type="StaticBody2D" parent="."]
-position = Vector2(1768, 584)
+position = Vector2(1768, 408)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Forwards Limit"]
 position = Vector2(-528, 56)
@@ -286,6 +60,3 @@ offset_left = 56.0
 offset_right = 96.0
 offset_bottom = 23.0
 text = "On"
-
-[connection signal="finished" from="Car/AudioStreamPlayer" to="Car" method="_on_engine_start_audio_finished"]
-[connection signal="timeout" from="Car/TimerEngineStarting" to="Car" method="_on_engine_starting_timeout"]
