@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbk6sju1i0iiq"]
+[gd_scene load_steps=16 format=3 uid="uid://bbk6sju1i0iiq"]
 
 [ext_resource type="Script" uid="uid://mc7hlvaenme" path="res://little-vehicle.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://mj1y7wp0rmkl" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://ih38xjj4m4v" path="res://sprites/ferrari-idle-sheet.png" id="2_e2o6t"]
 [ext_resource type="AudioStream" uid="uid://bd6o1owo2eh4b" path="res://audios/car-ignition-1.mp3" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://b4vhdw0ece5yj" path="res://sprites/ferrari-gts-running-sheet.png" id="4_7jktm"]
+[ext_resource type="Texture2D" uid="uid://bf8tf3tllepob" path="res://sprites/ferrari.png" id="4_eow3j"]
+[ext_resource type="Texture2D" uid="uid://cequ603jtgw3m" path="res://sprites/ferrari-road-solid.png" id="6_ryrav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(160, 64)
@@ -46,6 +48,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [3]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_e2o6t"]
 resource_name = "engine_off"
@@ -59,7 +73,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [19]
+"values": [1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -72,6 +86,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_eow3j")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_feb5d"]
@@ -101,6 +139,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("2_e2o6t")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
 }
 
 [sub_resource type="Animation" id="Animation_ryrav"]
@@ -153,22 +215,21 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
-size = Vector2(1280, 58)
+size = Vector2(1280, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
-size = Vector2(88, 90)
+size = Vector2(88, 288)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fc0e3")
 
 [node name="Car" type="RigidBody2D" parent="."]
-position = Vector2(168, 560)
+position = Vector2(168, 672)
 script = ExtResource("1_e2o6t")
 
 [node name="Sprite2D" type="Sprite2D" parent="Car"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_e2o6t")
-hframes = 5
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
@@ -190,23 +251,26 @@ one_shot = true
 position = Vector2(576, 592)
 
 [node name="Sprite2D" type="Sprite2D" parent="Road"]
+visible = false
+position = Vector2(64, 80)
+texture = ExtResource("6_ryrav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Road"]
-position = Vector2(64, 19)
+position = Vector2(64, 80)
 shape = SubResource("RectangleShape2D_7jktm")
 
 [node name="Backwards Limit" type="StaticBody2D" parent="."]
 position = Vector2(576, 584)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Backwards Limit"]
-position = Vector2(-532, -35)
+position = Vector2(-528, 64)
 shape = SubResource("RectangleShape2D_feb5d")
 
 [node name="Forwards Limit" type="StaticBody2D" parent="."]
 position = Vector2(1768, 584)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Forwards Limit"]
-position = Vector2(-532, -35)
+position = Vector2(-528, 56)
 shape = SubResource("RectangleShape2D_feb5d")
 
 [node name="HUD" type="Label" parent="."]
